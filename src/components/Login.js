@@ -24,7 +24,9 @@ class Login extends React.Component {
     this.setState({ credentials: newCredentials });
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    console.log(this.state);
+  };
 
   render() {
     return (
@@ -35,7 +37,7 @@ class Login extends React.Component {
           <Input type="text" name="email" onChange={this.handleChange} />
           <label>Password</label>
           <Input
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             onChange={this.handleChange}

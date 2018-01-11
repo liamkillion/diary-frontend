@@ -1,9 +1,6 @@
-import { services } from "../services/api";
+import { services } from "../services/services";
+import React from "react";
 
-const fetchUser = (props) => {
-  return (
-    <div />
-  )
-}
-
-export default
+const fetchUser = props => {
+  return <div />;
+};
