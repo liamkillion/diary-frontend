@@ -46,7 +46,13 @@ const createNewEntry = newEntry => {
   }).then(res => res.json());
 };
 
-export default {
+const getTags = () => {};
+
+const createNewTag = () => {};
+
+const deleteTag = () => {};
+
+export const services = {
   // users: {
   //   getUsers,
   //   addListing
