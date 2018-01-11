@@ -1,6 +1,2 @@
-import { services } from "../services/services";
+import { services } from "../services";
 import React from "react";
-
-const fetchUser = props => {
-  return <div />;
-};

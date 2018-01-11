@@ -1,8 +1,7 @@
 import React from "react";
 import { Row, Input, Button } from "react-materialize";
-import * as actions from "../actions/index";
+import { services } from "../services/";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   constructor() {
@@ -25,7 +24,11 @@ class Login extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state);
+    this.props.dispatch({ type: "ASYNC_START" });
+    services.auth.logIn(this.state.credentials).then(user => {
+      localStorage.setItem("token", user.jwt);
+      this.props.dispatch({ type: "SET_CURRENT_USER", user });
+    });
   };
 
   render() {
@@ -51,4 +54,6 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(Login);
