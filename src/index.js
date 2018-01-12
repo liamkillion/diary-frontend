@@ -14,11 +14,11 @@ const rootReducer = combineReducers({ userReducer });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  // <Router>
-  <Provider store={store}>
-    <Route path="/" component={App} />
-  </Provider>,
-  // </Router>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );
 // registerServiceWorker();

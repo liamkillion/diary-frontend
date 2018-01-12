@@ -1,6 +1,5 @@
 import React from "react";
-import { Row, Input, Button } from "react-materialize";
-import { services } from "../services/";
+import { services } from "../services/index";
 import { connect } from "react-redux";
 
 class Login extends React.Component {
@@ -23,32 +22,48 @@ class Login extends React.Component {
     this.setState({ credentials: newCredentials });
   };
 
-  handleSubmit = () => {
-    this.props.dispatch({ type: "ASYNC_START" });
-    services.auth.logIn(this.state.credentials).then(user => {
-      localStorage.setItem("token", user.jwt);
-      this.props.dispatch({ type: "SET_CURRENT_USER", user });
-    });
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("Login props", this.props);
+    console.log("Login state", this.state);
+    services.auth
+      .logIn(this.state.credentials.email, this.state.credentials.password)
+      .then(res => {
+        if (res.error) {
+          this.setState({ error: res.error });
+        } else {
+          this.props.handleLogin(res);
+          this.props.history.push("/");
+          console.log("Our user is", res);
+        }
+      });
   };
 
   render() {
     return (
       <div>
         {this.state.error ? <h1>Try Again</h1> : null}
-        <Row>
-          <label>Email</label>
-          <Input type="text" name="email" onChange={this.handleChange} />
-          <label>Password</label>
-          <Input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={this.handleChange}
-          />
-          <Button onClick={this.handleSubmit} waves="light">
-            login
-          </Button>
-        </Row>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>email</label>
+            <input
+              type="text"
+              name="email"
+              value={this.state.credentials.email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              name="password"
+              type="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
       </div>
     );
   }

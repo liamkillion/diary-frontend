@@ -1,7 +1,7 @@
 const API_ROOT = "http://localhost:3000/api/v1";
 
+const token = localStorage.getItem("token");
 const getHeaders = () => {
-  const token = localStorage.getItem("token");
   return {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -12,11 +12,8 @@ const getHeaders = () => {
 const logIn = (email, password) => {
   return fetch(`${API_ROOT}/auth`, {
     method: "POST",
-    headers: {
-      accept: "application/json",
-      "Content-type": "application/JSON"
-    },
-    body: JSON.stringify({ email: email, password: password })
+    headers: getHeaders(),
+    body: JSON.stringify({ email, password })
   }).then(res => res.json());
 };
 
