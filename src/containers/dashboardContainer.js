@@ -1,20 +1,26 @@
 import React from "react";
+import { services } from "../services";
 
-class dashboardContainer extends React.Component {
+class DashboardContainer extends React.Component {
   compoentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      return {};
+      services.auth.getCurrentUser().then(user => {
+        console.log("response fron current_user endpoint", user);
+        const currentUser = { currentUser: user };
+        this.setState({ auth: currentUser });
+      });
     } else {
+      this.props.history.push("/login");
     }
   }
   render() {
     return (
       <div>
-        <h1>dashboardContainer</h1>
+        <h1>DashboardContainer</h1>
       </div>
     );
   }
 }
 
-export default dashboardContainer;
+export default DashboardContainer;

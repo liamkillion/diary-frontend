@@ -4,9 +4,9 @@ import Login from "./components/Login";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { services } from "./services";
-import newEntryContainer from "./containers/newEntryContainer";
-import entriesContainer from "./containers/entriesContainer";
-import dashboardContainer from "./containers/dashboardContainer";
+import NewEntryContainer from "./containers/NewEntryContainer";
+import EntriesContainer from "./containers/EntriesContainer";
+import DashboardContainer from "./containers/DashboardContainer";
 
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
@@ -24,8 +24,9 @@ class App extends React.Component {
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
-    localStorage.setItem("token", user.token);
+    localStorage.setItem("token", user.id);
     this.setState({ auth: currentUser });
+    this.props.history.push("/entries/new");
   };
 
   handleLogout = () => {
@@ -52,19 +53,19 @@ class App extends React.Component {
           <Route
             path="/entries/new"
             render={() => {
-              return <newEntryContainer />;
+              return <NewEntryContainer />;
             }}
           />
           <Route
             path="/entries"
             render={() => {
-              return <entriesContainer />;
+              return <EntriesContainer />;
             }}
           />
           <Route
             path="/dashboard"
             render={() => {
-              return <dashboardContainer />;
+              return <DashboardContainer />;
             }}
           />
         </Switch>

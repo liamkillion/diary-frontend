@@ -1,22 +1,29 @@
 import React from "react";
-import entry from "../components/entry";
+import Entry from "../components/Entry";
+import { services } from "../services";
 
-class entriesContainer extends React.Component {
+class EntriesContainer extends React.Component {
   compoentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      return {};
+      services.auth.getCurrentUser().then(user => {
+        console.log("response fron current_user endpoint", user);
+        const currentUser = { currentUser: user };
+        this.setState({ auth: currentUser });
+      });
     } else {
+      this.props.history.push("/login");
     }
   }
+
   render() {
     return (
       <div>
-        <h1>entriesContainer</h1>
-        <entry />
+        <h1>EntriesContainer</h1>
+        <Entry />
       </div>
     );
   }
 }
 
-export default entriesContainer;
+export default EntriesContainer;

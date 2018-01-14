@@ -18,7 +18,7 @@ class newEntryForm extends React.Component {
             value={this.state.content}
             onChange={this.handleChange}
           />
-          <input type="submit">Submit</input>
+          <input type="submit" />
         </form>
       </div>
     );
