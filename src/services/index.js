@@ -35,11 +35,11 @@ const getEntry = entryId => {
   }).then(res => res.json());
 };
 
-const createNewEntry = newEntry => {
+const createNewEntry = entry => {
   return fetch(`${API_ROOT}/entries`, {
     method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify({ newEntry })
+    body: JSON.stringify({ entry })
   }).then(res => res.json());
 };
 

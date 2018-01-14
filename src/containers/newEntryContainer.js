@@ -4,26 +4,8 @@ import { services } from "../services";
 import EntryInfo from "../components/EntryInfo";
 
 class NewEntryContainer extends React.Component {
-  state = {
-    content: ""
-  };
-  compoentDidMount() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      services.auth.getCurrentUser().then(user => {
-        console.log("response fron current_user endpoint", user);
-        const currentUser = { currentUser: user };
-        this.setState({ auth: currentUser });
-      });
-    } else {
-      this.props.history.push("/login");
-    }
-  }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
   render() {
+    console.log("NewEntryContainer props", this.props);
     return (
       <div>
         <div className="row">
@@ -31,7 +13,7 @@ class NewEntryContainer extends React.Component {
             <EntryInfo />
           </div>
           <div className="col s8">
-            <NewEntryForm />
+            <NewEntryForm currentUser={this.props.currentUser} />
           </div>
         </div>
       </div>

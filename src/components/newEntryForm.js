@@ -1,21 +1,30 @@
 import React from "react";
 import { services } from "../services";
 
-class newEntryForm extends React.Component {
+class NewEntryForm extends React.Component {
   state = {
-    content: ""
+    content: "",
+    userid: this.props.currentUser.id,
+    timestamp: "",
+    location: "",
+    weather: "",
+    img_src: "",
+    mood: ""
   };
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
     services.entries.createNewEntry(this.state);
   };
+
   render() {
     return (
       <div>
-        <h1>newEntryForm</h1>
+        <h1>NewEntryForm</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="input-field">
@@ -39,4 +48,4 @@ class newEntryForm extends React.Component {
   }
 }
 
-export default newEntryForm;
+export default NewEntryForm;

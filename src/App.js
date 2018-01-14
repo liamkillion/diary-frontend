@@ -37,6 +37,7 @@ class App extends React.Component {
   //Login Router
   //
   render() {
+    console.log("App", this.state);
     return (
       <div className="App">
         <Navbar
@@ -53,7 +54,9 @@ class App extends React.Component {
           <Route
             path="/entries/new"
             render={() => {
-              return <NewEntryContainer />;
+              return (
+                <NewEntryContainer currentUser={this.state.auth.currentUser} />
+              );
             }}
           />
           <Route
