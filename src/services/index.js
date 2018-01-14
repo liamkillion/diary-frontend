@@ -50,10 +50,6 @@ const createNewTag = () => {};
 const deleteTag = () => {};
 
 export const services = {
-  // users: {
-  //   getUsers,
-  //   addListing
-  // },
   entries: {
     getEntries,
     getEntry,

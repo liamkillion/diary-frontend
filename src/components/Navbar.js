@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
@@ -7,14 +8,37 @@ class Navbar extends React.Component {
     return (
       <div className="nav-wrapper">
         {loggedIn ? (
-          <div>
-            <p>{`Welcome${this.props.currentUser.name}`}</p>
-            <button onClick={this.props.handleLogout}>Log Out</button>
-          </div>
-        ) : null}
+          <ul className="right hide-on-med-and-down">
+            <li>{`Welcome${this.props.currentUser.name}`}</li>
+            <li>
+              {" "}
+              <button
+                onClick={() => {
+                  this.props.history.push("/login");
+                  this.props.handleLogout;
+                }}
+              >
+                Log Out
+              </button>
+            </li>
+          </ul>
+        ) : (
+          <ul className="right hide-on-med-and-down">
+            <li>Welcome</li>
+            <li>
+              <button
+                onClick={() => {
+                  this.props.history.push("/login");
+                }}
+              >
+                Log In
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
