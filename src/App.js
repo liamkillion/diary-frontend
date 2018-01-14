@@ -24,9 +24,10 @@ class App extends React.Component {
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
-    localStorage.setItem("token", user.id);
+    localStorage.setItem("token", user.token);
     this.setState({ auth: currentUser });
-    this.props.history.push("/entries/new");
+    console.log("handleLogin props", this.props);
+    // this.state.history.push("/entries/new");
   };
 
   handleLogout = () => {
@@ -36,7 +37,6 @@ class App extends React.Component {
   //Login Router
   //
   render() {
-    console.log("App state", this.state);
     return (
       <div className="App">
         <Navbar

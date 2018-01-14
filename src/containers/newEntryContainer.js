@@ -1,6 +1,7 @@
 import React from "react";
 import NewEntryForm from "../components/NewEntryForm";
 import { services } from "../services";
+import EntryInfo from "../components/EntryInfo";
 
 class NewEntryContainer extends React.Component {
   state = {
@@ -22,38 +23,15 @@ class NewEntryContainer extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    services.entries.createNewEntry(this.state);
-  };
   render() {
     return (
       <div>
-        <div class="row">
-          <div class="col s4">
-            <p>Location:</p>
-            <p>40.705261,-74.0150895</p>
-            <p>Weather:</p>
-            <p>-459.67°F</p>
+        <div className="row">
+          <div className="col s4">
+            <EntryInfo />
           </div>
-          <div class="col s4">
-            <form>
-              <div class="row">
-                <div class="input-field">
-                  <textarea
-                    id="textarea1"
-                    class="materialize-textarea"
-                    name="content"
-                    onChange={this.handleChange}
-                  />
-                  <label for="textarea1">
-                    Welcome to your daily diary! Complete your entry today and
-                    click Submit to save it. On the left you can see information
-                    that will be included in your post :).
-                  </label>
-                </div>
-              </div>
-            </form>
+          <div className="col s8">
+            <NewEntryForm />
           </div>
         </div>
       </div>
