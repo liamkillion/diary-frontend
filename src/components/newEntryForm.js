@@ -6,22 +6,42 @@ class NewEntryForm extends React.Component {
     content: "",
     userid: this.props.currentUser.id,
     timestamp: "",
-    location: "",
+    location: [],
     weather: "",
     img_src: "",
     mood: ""
   };
 
+  componentDidMount = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const location = [position.coords.latitude, position.coords.longitude];
+        this.setState({ location });
+      });
+    } else {
+      null;
+    }
+  };
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+    fetch(
+      `https://api.darksky.net/forecast/d62bb2130f66e4f1409e972801134852/${
+        this.state.location[0]
+      },${this.state.location[1]}`
+    )
+      .then(res => res.json())
+      .then(res => this.setState({ weather: res.currently.temperature }));
   };
 
   handleSubmit = event => {
     event.preventDefault();
     services.entries.createNewEntry(this.state);
+    this.props.history.push("/entries");
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1>NewEntryForm</h1>

@@ -12,7 +12,10 @@ class NewEntryContainer extends React.Component {
             <EntryInfo />
           </div>
           <div className="col s8">
-            <NewEntryForm currentUser={this.props.currentUser} />
+            <NewEntryForm
+              currentUser={this.props.currentUser}
+              history={this.props.history}
+            />
           </div>
         </div>
       </div>

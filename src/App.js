@@ -53,9 +53,12 @@ class App extends React.Component {
           />
           <Route
             path="/entries/new"
-            render={() => {
+            render={routerProps => {
               return (
-                <NewEntryContainer currentUser={this.state.auth.currentUser} />
+                <NewEntryContainer
+                  {...routerProps}
+                  currentUser={this.state.auth.currentUser}
+                />
               );
             }}
           />
