@@ -11,7 +11,7 @@ import DashboardContainer from "./containers/DashboardContainer";
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
-  componentDidMount() {
+  componentDidMount = () => {
     const token = localStorage.getItem("token");
     if (token) {
       services.auth.getCurrentUser().then(user => {
@@ -20,7 +20,7 @@ class App extends React.Component {
         this.setState({ auth: currentUser });
       });
     }
-  }
+  };
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
@@ -62,7 +62,9 @@ class App extends React.Component {
           <Route
             path="/entries"
             render={() => {
-              return <EntriesContainer />;
+              return (
+                <EntriesContainer currentUser={this.state.auth.currentUser} />
+              );
             }}
           />
           <Route

@@ -2,7 +2,7 @@ import React from "react";
 import { services } from "../services";
 
 class DashboardContainer extends React.Component {
-  compoentDidMount() {
+  componentDidMount = () => {
     const token = localStorage.getItem("token");
     if (token) {
       services.auth.getCurrentUser().then(user => {
@@ -13,7 +13,7 @@ class DashboardContainer extends React.Component {
     } else {
       this.props.history.push("/login");
     }
-  }
+  };
   render() {
     return (
       <div>

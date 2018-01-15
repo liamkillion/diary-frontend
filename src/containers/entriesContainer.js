@@ -3,26 +3,28 @@ import Entry from "../components/Entry";
 import { services } from "../services";
 
 class EntriesContainer extends React.Component {
-  compoentDidMount() {
+  state = {
+    entries: []
+  };
+  componentDidMount = () => {
     const token = localStorage.getItem("token");
     if (token) {
-      services.auth.getCurrentUser().then(user => {
-        console.log("response fron current_user endpoint", user);
-        const currentUser = { currentUser: user };
-        this.setState({ auth: currentUser });
-      });
+      services.entries
+        .getEntries()
+        .then(entries =>
+          entries.filter(entry => entry.userId === this.props.currentUser.id)
+        )
+        .then(entries => this.setState({ entries }));
     } else {
       this.props.history.push("/login");
     }
-  }
+  };
 
   render() {
-    return (
-      <div>
-        <h1>EntriesContainer</h1>
-        <Entry />
-      </div>
-    );
+    const entries = this.state.entries.map((entry, index) => {
+      return <Entry key={index} entry={entry} />;
+    });
+    return <div>{entries}</div>;
   }
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import NewEntryForm from "../components/NewEntryForm";
-import { services } from "../services";
 import EntryInfo from "../components/EntryInfo";
 
 class NewEntryContainer extends React.Component {

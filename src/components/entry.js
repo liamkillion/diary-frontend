@@ -4,7 +4,7 @@ class Entry extends React.Component {
   render() {
     return (
       <div>
-        <h1>EntryComponent</h1>
+        <p>{this.props.entry.content}</p>
       </div>
     );
   }
