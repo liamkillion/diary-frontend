@@ -1,30 +1,22 @@
 import React from "react";
-import Entry from "../components/Entry";
+import EntryTile from "../components/EntryTile";
 import { services } from "../services";
 
 class EntriesContainer extends React.Component {
-  state = {
-    entries: []
-  };
-  componentDidMount = () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      services.entries
-        .getEntries()
-        .then(entries =>
-          entries.filter(entry => entry.userId === this.props.currentUser.id)
-        )
-        .then(entries => this.setState({ entries }));
-    } else {
-      this.props.history.push("/login");
-    }
-  };
-
   render() {
-    const entries = this.state.entries.map((entry, index) => {
-      return <Entry key={index} entry={entry} />;
+    console.log(this.props);
+    const entries = this.props.currentUser.entries.map((entry, index) => {
+      return (
+        <EntryTile key={index} entry={entry} history={this.props.history} />
+      );
     });
-    return <div>{entries}</div>;
+    return (
+      <div>
+        <div className="row">
+          <div className="col s12 m6">{entries}</div>
+        </div>
+      </div>
+    );
   }
 }
 

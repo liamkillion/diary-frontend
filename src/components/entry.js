@@ -4,8 +4,7 @@ class Entry extends React.Component {
   render() {
     return (
       <div>
-        <p>Your post: {this.props.entry.content}</p>
-        <p>Created at: {this.props.entry.created_at}</p>
+        <h1>Entry goes here</h1>;
       </div>
     );
   }

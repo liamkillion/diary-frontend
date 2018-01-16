@@ -7,11 +7,12 @@ import { services } from "./services";
 import NewEntryContainer from "./containers/NewEntryContainer";
 import EntriesContainer from "./containers/EntriesContainer";
 import DashboardContainer from "./containers/DashboardContainer";
+import EntryContainer from "./containers/EntryContainer";
 
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
-  componentDidMount = () => {
+  componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
       services.auth.getCurrentUser().then(user => {
@@ -20,7 +21,7 @@ class App extends React.Component {
         this.setState({ auth: currentUser });
       });
     }
-  };
+  }
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
@@ -64,16 +65,27 @@ class App extends React.Component {
           />
           <Route
             path="/entries"
-            render={() => {
+            render={routerProps => {
               return (
-                <EntriesContainer currentUser={this.state.auth.currentUser} />
+                <EntriesContainer
+                  {...routerProps}
+                  currentUser={this.state.auth.currentUser}
+                />
               );
             }}
           />
           <Route
             path="/dashboard"
             render={() => {
-              return <DashboardContainer />;
+              return (
+                <DashboardContainer currentUser={this.state.auth.currentUser} />
+              );
+            }}
+          />
+          <Route
+            path="`/entries/${entry.id}`"
+            render={() => {
+              return <EntryContainer />;
             }}
           />
         </Switch>

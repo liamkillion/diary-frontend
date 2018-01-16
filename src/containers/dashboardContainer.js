@@ -2,22 +2,33 @@ import React from "react";
 import { services } from "../services";
 
 class DashboardContainer extends React.Component {
+  state = {
+    entries: []
+  };
   componentDidMount = () => {
     const token = localStorage.getItem("token");
     if (token) {
-      services.auth.getCurrentUser().then(user => {
-        console.log("response fron current_user endpoint", user);
-        const currentUser = { currentUser: user };
-        this.setState({ auth: currentUser });
-      });
+      // debugger;
+      services.entries
+        .getEntries()
+        .then(entries =>
+          entries.filter(entry => entry.userId === this.props.currentUser.id)
+        )
+        .then(entries => this.setState({ entries }));
     } else {
       this.props.history.push("/login");
     }
   };
+
   render() {
     return (
       <div>
-        <h1>DashboardContainer</h1>
+        <h1>Dashboard</h1>
+
+        <ul>
+          <li>Number of entries: {this.state.entries.count}</li>
+          <li>Last Entry was: {this.state.entries.last}</li>
+        </ul>
       </div>
     );
   }
