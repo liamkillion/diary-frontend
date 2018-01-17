@@ -30,6 +30,7 @@ class NewEntryForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     services.entries.createNewEntry(this.state);
+    this.props.refreshEntries(this.state);
     this.props.history.push("/entries");
   };
 

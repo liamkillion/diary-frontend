@@ -1,12 +1,11 @@
 import React from "react";
 import { services } from "../services";
+import { Link, Route } from "react-router-dom";
+import EntryContainer from "../containers/EntryContainer";
 
 class EntryTile extends React.Component {
-  handleSelect = () => {
-    services.entries.getEntry(this.props.entry.id).then(res => res.json());
-    this.props.history.push(`/entries/${this.props.entry.id}`);
-  };
   render() {
+    const goPath = `/entries/${this.props.entry.id}`;
     return (
       <div className="card teal darken-1">
         <div className="card-content white-text">
@@ -14,7 +13,12 @@ class EntryTile extends React.Component {
           <p>Created at: {this.props.entry.created_at}</p>
         </div>
         <div className="card-action">
-          <a onClick={this.handleSelect}>View Individually</a>
+          <Route
+            path={goPath}
+            render={() => {
+              return <EntryContainer />;
+            }}
+          />
         </div>
       </div>
     );
