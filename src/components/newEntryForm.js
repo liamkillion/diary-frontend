@@ -8,7 +8,7 @@ class NewEntryForm extends React.Component {
     userid: this.props.currentUser.id,
     timestamp: "",
     location: [],
-    weather: "",
+    weather: {},
     img_src: "",
     mood: ""
   };
