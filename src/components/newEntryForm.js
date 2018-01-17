@@ -1,5 +1,6 @@
 import React from "react";
 import { services } from "../services";
+import EmojiField from "emoji-picker-textfield";
 
 class NewEntryForm extends React.Component {
   state = {
@@ -18,13 +19,19 @@ class NewEntryForm extends React.Component {
         const location = [position.coords.latitude, position.coords.longitude];
         this.setState({ location });
       });
-    } else {
-      null;
     }
+    services.entries
+      .getWeather(this.state.location)
+      .then(json => this.setState({ weather: json.currently }));
+    this.setState({ timestamp: Date.now() });
   };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleEmojiChange = (event, value) => {
+    this.setState({ mood: value });
   };
 
   handleSubmit = event => {
@@ -35,7 +42,6 @@ class NewEntryForm extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     const ReactS3Uploader = require("react-s3-uploader");
     return (
       <div>
@@ -54,11 +60,19 @@ class NewEntryForm extends React.Component {
                 name="content"
                 onChange={this.handleChange}
               />
+              <div class="input-field inline">
+                <EmojiField
+                  name="mood"
+                  onChange={this.handleEmojiChange}
+                  autoClose={true}
+                />
+                <label for="emojiInput">#Mood</label>
+              </div>
               <div className="file-field input-field">
                 <div className="btn">
                   <span>File</span>
                   <input type="file" />
-                  // <ReactS3Uploader />
+                  <ReactS3Uploader />
                 </div>
                 <div className="file-path-wrapper">
                   <input className="file-path validate" type="text" />

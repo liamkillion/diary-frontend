@@ -43,6 +43,14 @@ const createNewEntry = newEntry => {
   }).then(res => res.json());
 };
 
+const getWeather = location => {
+  return fetch(`${API_ROOT}/weather`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ location })
+  }).then(res => res.json());
+};
+
 const getTags = () => {};
 
 const createNewTag = () => {};
@@ -53,7 +61,8 @@ export const services = {
   entries: {
     getEntries,
     getEntry,
-    createNewEntry
+    createNewEntry,
+    getWeather
   },
   tags: {
     getTags,
