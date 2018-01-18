@@ -13,7 +13,7 @@ class NewEntryForm extends React.Component {
   };
 
   componentDidMount = () => {
-    this.setState({ timestamp: Date.now(), userid: this.props.currentUser.id });
+    this.setState({ timestamp: Date.now() });
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const location = [position.coords.latitude, position.coords.longitude];

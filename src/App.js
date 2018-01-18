@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
 import Login from "./components/Login";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { services } from "./services";
 import NewEntryContainer from "./containers/NewEntryContainer";
 import EntriesContainer from "./containers/EntriesContainer";
 import DashboardContainer from "./containers/DashboardContainer";
+import EntryContainer from "./containers/EntryContainer";
 
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
@@ -27,6 +28,7 @@ class App extends React.Component {
     localStorage.setItem("token", user.token);
     this.setState({ auth: currentUser });
     console.log("handleLogin props", this.props);
+    this.props.history.push("/entries/new");
   };
 
   handleLogout = () => {
@@ -72,6 +74,7 @@ class App extends React.Component {
             }}
           />
           <Route
+            exact
             path="/entries"
             render={routerProps => {
               return (
@@ -90,10 +93,14 @@ class App extends React.Component {
               );
             }}
           />
+          <Route
+            path="/entries/:entry_id"
+            render={routerProps => <EntryContainer {...routerProps} />}
+          />
         </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

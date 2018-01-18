@@ -33,7 +33,6 @@ class Login extends React.Component {
           this.setState({ error: res.error });
         } else {
           this.props.handleLogin(res);
-          this.props.history.push("/entries/new");
           console.log("Our user is", res);
         }
       });
