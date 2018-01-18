@@ -5,25 +5,24 @@ import EmojiField from "emoji-picker-textfield";
 class NewEntryForm extends React.Component {
   state = {
     content: "",
-    userid: this.props.currentUser.id,
     timestamp: "",
     location: [],
-    weather: {},
+    weather: "",
     img_src: "",
     mood: ""
   };
 
   componentDidMount = () => {
+    this.setState({ timestamp: Date.now(), userid: this.props.currentUser.id });
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const location = [position.coords.latitude, position.coords.longitude];
         this.setState({ location });
+        services.entries
+          .getWeather(location)
+          .then(json => this.setState({ weather: json.currently }));
       });
     }
-    services.entries
-      .getWeather(this.state.location)
-      .then(json => this.setState({ weather: json.currently }));
-    this.setState({ timestamp: Date.now() });
   };
 
   handleChange = event => {
@@ -42,6 +41,7 @@ class NewEntryForm extends React.Component {
   };
 
   render() {
+    console.log("Entry form state", this.state);
     const ReactS3Uploader = require("react-s3-uploader");
     return (
       <div>
@@ -60,13 +60,14 @@ class NewEntryForm extends React.Component {
                 name="content"
                 onChange={this.handleChange}
               />
-              <div class="input-field inline">
+              <div className="input-field inline">
                 <EmojiField
                   name="mood"
                   onChange={this.handleEmojiChange}
                   autoClose={true}
+                  fieldType="textfield"
                 />
-                <label for="emojiInput">#Mood</label>
+                <label forhtml="emojiInput">#Mood</label>
               </div>
               <div className="file-field input-field">
                 <div className="btn">

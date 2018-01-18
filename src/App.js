@@ -27,7 +27,6 @@ class App extends React.Component {
     localStorage.setItem("token", user.token);
     this.setState({ auth: currentUser });
     console.log("handleLogin props", this.props);
-    // this.state.history.push("/entries/new");
   };
 
   handleLogout = () => {
