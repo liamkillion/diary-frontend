@@ -13,15 +13,17 @@ class NewEntryForm extends React.Component {
   };
 
   componentDidMount = () => {
-    this.setState({ timestamp: Date.now() });
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const location = [position.coords.latitude, position.coords.longitude];
         this.setState({ location });
         services.entries
           .getWeather(location)
+          .then(res => res.json())
           .then(json => this.setState({ weather: json.currently }));
       });
+      const writeTime = Date.now();
+      this.setState({ timestamp: writeTime });
     }
   };
 
@@ -66,6 +68,8 @@ class NewEntryForm extends React.Component {
                   onChange={this.handleEmojiChange}
                   autoClose={true}
                   fieldType="textfield"
+                  data-emoji-input="unicode"
+                  ref={_field => (this._field = _field)}
                 />
                 <label forhtml="emojiInput">#Mood</label>
               </div>

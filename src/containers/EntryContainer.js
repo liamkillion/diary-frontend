@@ -8,12 +8,14 @@ class EntryContainer extends React.Component {
   };
 
   componentDidMount() {
-    const entryId = this.props.history.location.pathname.last;
-    const entry = services.entries.getEntry(entryId);
-    this.setState({ entry });
+    services.entries
+      .getEntry(this.props.match.params.entry_id)
+      .then(res => this.setState({ entry: res }));
   }
 
   render() {
+    console.log("EntryContainer state", this.state);
+    console.log("EntryContainer props", this.props);
     return (
       <div>
         <button onClick={this.props.history.goBack}>Back To Entries</button>
