@@ -10,12 +10,14 @@ class EntryContainer extends React.Component {
   componentDidMount() {
     services.entries
       .getEntry(this.props.match.params.entry_id)
-      .then(res => this.setState({ entry: res }));
+      .then(entry => this.setState({ entry }));
   }
 
   render() {
     console.log("EntryContainer state", this.state);
     console.log("EntryContainer props", this.props);
+    console.log("WTF type is this weather", typeof this.state.entry.weather);
+    console.log("WTF type is this location", typeof this.state.entry.location);
     return (
       <div>
         <button onClick={this.props.history.goBack}>Back To Entries</button>

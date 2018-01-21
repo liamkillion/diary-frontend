@@ -12,6 +12,17 @@ class NewEntryForm extends React.Component {
     mood: ""
   };
 
+  // componentDidMount() {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     services.auth.getCurrentUser().then(user => {
+  //       console.log("response fron current_user endpoint", user);
+  //       const currentUser = { currentUser: user };
+  //       this.setState({ auth: currentUser });
+  //     });
+  //   }
+  // }
+
   componentDidMount = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -19,11 +30,8 @@ class NewEntryForm extends React.Component {
         this.setState({ location });
         services.entries
           .getWeather(location)
-          .then(res => res.json())
-          .then(json => this.setState({ weather: json.currently }));
+          .then(json => this.setState({ [weather]: json }));
       });
-      const writeTime = Date.now();
-      this.setState({ timestamp: writeTime });
     }
   };
 
