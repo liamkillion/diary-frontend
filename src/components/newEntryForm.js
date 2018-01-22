@@ -30,7 +30,7 @@ class NewEntryForm extends React.Component {
         this.setState({ location });
         services.entries
           .getWeather(location)
-          .then(json => this.setState({ [weather]: json }));
+          .then(json => this.setState({ weather: json }));
       });
     }
   };

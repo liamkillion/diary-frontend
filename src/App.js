@@ -74,7 +74,6 @@ class App extends React.Component {
             }}
           />
           <Route
-            exact
             path="/entries"
             render={routerProps => {
               return (

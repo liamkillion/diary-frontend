@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
@@ -11,6 +11,21 @@ class Navbar extends React.Component {
           {loggedIn ? (
             <ul className="right hide-on-med-and-down">
               <li>{`Welcome ${this.props.currentUser.name}`}</li>
+              <li>
+                <Link to={"/entries"}>
+                  <button>All Entries</button>
+                </Link>
+              </li>
+              <li>
+                <Link to={"/entries/new"}>
+                  <button>New Entry</button>
+                </Link>
+              </li>
+              <li>
+                <Link to={"/dashboard"}>
+                  <button>Dashboard</button>
+                </Link>
+              </li>
               <li>
                 {" "}
                 <button
