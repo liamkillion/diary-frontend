@@ -16,6 +16,7 @@ class NewEntryContainer extends React.Component {
               currentUser={this.props.currentUser}
               history={this.props.history}
               refreshEntries={this.props.refreshEntries}
+              handleCreateEntry={this.props.handleCreateEntry}
             />
           </div>
         </div>

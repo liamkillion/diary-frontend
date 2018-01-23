@@ -10,7 +10,7 @@ import DashboardContainer from "./containers/DashboardContainer";
 import EntryContainer from "./containers/EntryContainer";
 
 class App extends React.Component {
-  state = { auth: { currentUser: {} } };
+  state = { auth: { currentUser: { entries: [] } } };
 
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -36,12 +36,23 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+  handleCreateEntry = newEntry => {
+    services.entries
+      .createNewEntry(newEntry)
+      .then(entries => this.setState({ auth: { currentUser: { entries } } }));
+    this.props.history.push("/entries");
+  };
+
   refreshEntries = item => {
-    this.setState({
+    const newItem = item;
+    this.setState(previousState => ({
       auth: {
-        currentUser: { entries: [item, ...this.state.auth.currentUser.entries] }
+        currentUser: {
+          ...previousState.auth.currentUser,
+          entries: [newItem, ...previousState.auth.currentUser.entries]
+        }
       }
-    });
+    }));
   };
 
   //Login Router
@@ -69,11 +80,13 @@ class App extends React.Component {
                   {...routerProps}
                   currentUser={this.state.auth.currentUser}
                   refreshEntries={this.refreshEntries}
+                  handleCreateEntry={this.handleCreateEntry}
                 />
               );
             }}
           />
           <Route
+            exact
             path="/entries"
             render={routerProps => {
               return (

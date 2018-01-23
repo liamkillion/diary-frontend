@@ -40,14 +40,13 @@ class NewEntryForm extends React.Component {
   };
 
   handleEmojiChange = (event, value) => {
-    this.setState({ mood: value });
+    const unicodeValue = this._field.getUnicode();
+    this.setState({ mood: unicodeValue });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    services.entries.createNewEntry(this.state);
-    this.props.refreshEntries(this.state);
-    this.props.history.push("/entries");
+    this.props.handleCreateEntry(this.state);
   };
 
   render() {

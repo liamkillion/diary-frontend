@@ -48,9 +48,8 @@ const getWeather = location => {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({ location })
-  })
-    .then(res => res.json())
-    .then(res => console.log("after res.JSON()", res));
+  }).then(res => res.json());
+  // .then(res => console.log("after res.JSON()", res));
   //try get instead of pOST
 };
 

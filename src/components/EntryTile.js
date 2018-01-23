@@ -6,7 +6,6 @@ class EntryTile extends React.Component {
     const date = new Date(this.props.entry.timestamp);
     const showDate = date.toDateString();
     const goPath = `/entries/${this.props.entry.id}`;
-
     return (
       <Link to={goPath}>
         <div className="card teal darken-1">

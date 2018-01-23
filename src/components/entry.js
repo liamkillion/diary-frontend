@@ -1,4 +1,5 @@
 import React from "react";
+import Emojify from "react-emojione";
 
 class Entry extends React.Component {
   // var emojiSupported = (function() {
@@ -17,13 +18,19 @@ class Entry extends React.Component {
   // })();
 
   render() {
+    const emojiCode = this.props.entry.mood;
     return (
       <div>
         <div className="card teal darken-1">
           <p>{this.props.entry.content}</p>
           <p>Created On Date: {this.props.entry.created_on_date}</p>
           <p>Location: {this.props.entry.location}</p>
-          <p>Mood: {this.props.entry.mood}</p>
+          <p>
+            Mood:
+            <Emojify>
+              <span>{emojiCode}</span>
+            </Emojify>
+          </p>
           <p>Weather: {this.props.entry.weather}</p>
         </div>
       </div>
