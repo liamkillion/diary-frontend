@@ -4,7 +4,18 @@ import { services } from "../services";
 
 class EntryContainer extends React.Component {
   state = {
-    entry: ""
+    entry: {
+      id: "null",
+      user_id: "null",
+      content: "null",
+      created_on_date: "null",
+      location: "null",
+      img_src: "null",
+      mood: "null",
+      created_at: "null",
+      updated_at: "null",
+      weather: "null"
+    }
   };
 
   componentDidMount() {
@@ -14,10 +25,6 @@ class EntryContainer extends React.Component {
   }
 
   render() {
-    console.log("EntryContainer state", this.state);
-    console.log("EntryContainer props", this.props);
-    console.log(this.state.entry.weather);
-    console.log("WTF type is this location", typeof this.state.entry.location);
     return (
       <div>
         <button onClick={this.props.history.goBack}>Back To Entries</button>

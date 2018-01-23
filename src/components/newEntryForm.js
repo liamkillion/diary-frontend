@@ -12,17 +12,6 @@ class NewEntryForm extends React.Component {
     mood: ""
   };
 
-  // componentDidMount() {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     services.auth.getCurrentUser().then(user => {
-  //       console.log("response fron current_user endpoint", user);
-  //       const currentUser = { currentUser: user };
-  //       this.setState({ auth: currentUser });
-  //     });
-  //   }
-  // }
-
   componentDidMount = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -50,7 +39,6 @@ class NewEntryForm extends React.Component {
   };
 
   render() {
-    console.log("Entry form state", this.state);
     const ReactS3Uploader = require("react-s3-uploader");
     return (
       <div>

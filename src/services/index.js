@@ -49,8 +49,6 @@ const getWeather = location => {
     headers: getHeaders(),
     body: JSON.stringify({ location })
   }).then(res => res.json());
-  // .then(res => console.log("after res.JSON()", res));
-  //try get instead of pOST
 };
 
 const getTags = () => {};

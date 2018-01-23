@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class EntryTile extends React.Component {
   render() {
-    const date = new Date(this.props.entry.timestamp);
+    const date = new Date(this.props.entry.created_at);
     const showDate = date.toDateString();
     const goPath = `/entries/${this.props.entry.id}`;
     return (

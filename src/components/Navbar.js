@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
-    console.log("Navbar props", this.props);
     const loggedIn = !!this.props.currentUser.id;
     return (
       <nav>

@@ -2,36 +2,28 @@ import React from "react";
 import Emojify from "react-emojione";
 
 class Entry extends React.Component {
-  // var emojiSupported = (function() {
-  //   var node = document.createElement("canvas");
-  //   if (
-  //     !node.getContext ||
-  //     !node.getContext("2d") ||
-  //     typeof node.getContext("2d").fillText !== "function"
-  //   )
-  //     return false;
-  //   var ctx = node.getContext("2d");
-  //   ctx.textBaseline = "top";
-  //   ctx.font = "32px Arial";
-  //   ctx.fillText("\ud83d\ude03", 0, 0);
-  //   return ctx.getImageData(16, 16, 1, 1).data[0] !== 0;
-  // })();
-
   render() {
     const emojiCode = this.props.entry.mood;
+    const location = `Latitude: ${this.props.entry.location[0]}, Longitude: ${
+      this.props.entry.location[1]
+    }`;
+    const weather = this.props.entry.weather.summary;
+    const temp = this.props.entry.weather.temperature;
     return (
       <div>
         <div className="card teal darken-1">
-          <p>{this.props.entry.content}</p>
-          <p>Created On Date: {this.props.entry.created_on_date}</p>
-          <p>Location: {this.props.entry.location}</p>
+          <p>You wrote: {this.props.entry.content}</p>
+          <p>Posted On: {this.props.entry.created_on_date}</p>
+          <p>Location: {location}</p>
           <p>
             Mood:
             <Emojify>
               <span>{emojiCode}</span>
             </Emojify>
           </p>
-          <p>Weather: {this.props.entry.weather}</p>
+          <p>
+            Weather: {weather} at {temp}&#176;F
+          </p>
         </div>
       </div>
     );

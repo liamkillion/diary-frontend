@@ -4,7 +4,6 @@ import EntryInfo from "../components/EntryInfo";
 
 class NewEntryContainer extends React.Component {
   render() {
-    console.log("NewEntryContainer props", this.props);
     return (
       <div>
         <div className="row">

@@ -24,8 +24,6 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log("Login props", this.props);
-    // console.log("Login state", this.state);
     services.auth
       .logIn(this.state.credentials.email, this.state.credentials.password)
       .then(res => {
@@ -33,7 +31,6 @@ class Login extends React.Component {
           this.setState({ error: res.error });
         } else {
           this.props.handleLogin(res);
-          console.log("Our user is", res);
         }
       });
   };

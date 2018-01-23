@@ -3,7 +3,6 @@ import EntryTile from "../components/EntryTile";
 
 class EntriesContainer extends React.Component {
   render() {
-    console.log("EntriesContainer props", this.props);
     const entries = this.props.currentUser.entries.map((entry, index) => {
       return (
         <EntryTile key={index} entry={entry} history={this.props.history} />

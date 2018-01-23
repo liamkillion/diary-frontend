@@ -16,7 +16,6 @@ class App extends React.Component {
     const token = localStorage.getItem("token");
     if (token) {
       services.auth.getCurrentUser().then(user => {
-        console.log("response fron current_user endpoint", user);
         const currentUser = { currentUser: user };
         this.setState({ auth: currentUser });
       });
@@ -27,7 +26,6 @@ class App extends React.Component {
     const currentUser = { currentUser: user };
     localStorage.setItem("token", user.token);
     this.setState({ auth: currentUser });
-    console.log("handleLogin props", this.props);
     this.props.history.push("/entries/new");
   };
 
@@ -55,10 +53,7 @@ class App extends React.Component {
     }));
   };
 
-  //Login Router
-  //
   render() {
-    console.log("App", this.state);
     return (
       <div className="App">
         <Navbar
