@@ -33,10 +33,10 @@ class NewEntryForm extends React.Component {
     const unicodeValue = this._field.getUnicode();
     this.setState({ mood: unicodeValue });
   };
-
-  handleFileSelect = event => {
-    file = event.target.value;
-  };
+  //
+  // handleFileSelect = event => {
+  //   file = event.target.value;
+  // };
 
   handleSubmit = event => {
     event.preventDefault();
