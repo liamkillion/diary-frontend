@@ -7,25 +7,56 @@ class Login extends React.Component {
     super();
     this.state = {
       error: false,
-      credentials: {
+      logincredentials: {
+        email: "",
+        password: ""
+      },
+      signupcredentials: {
         email: "",
         password: ""
       }
     };
   }
 
-  handleChange = event => {
-    const newCredentials = {
-      ...this.state.credentials,
+  handleLoginChange = event => {
+    const logincredentials = {
+      ...this.state.logincredentials,
       [event.target.name]: event.target.value
     };
-    this.setState({ credentials: newCredentials });
+    this.setState({ logincredentials: logincredentials });
   };
 
-  handleSubmit = event => {
+  handleSignUpChange = event => {
+    const signupcredentials = {
+      ...this.state.signupcredentials,
+      [event.target.name]: event.target.value
+    };
+    this.setState({ signupcredentials: signupcredentials });
+  };
+
+  handleLoginSubmit = event => {
     event.preventDefault();
     services.auth
-      .logIn(this.state.credentials.email, this.state.credentials.password)
+      .logIn(
+        this.state.logincredentials.email,
+        this.state.logincredentials.password
+      )
+      .then(res => {
+        if (res.error) {
+          this.setState({ error: res.error });
+        } else {
+          this.props.handleLogin(res);
+        }
+      });
+  };
+
+  handleSignUpSubmit = event => {
+    event.preventDefault();
+    services.auth
+      .createUser(
+        this.state.signupcredentials.email,
+        this.state.signupcredentials.password
+      )
       .then(res => {
         if (res.error) {
           this.setState({ error: res.error });
@@ -39,14 +70,15 @@ class Login extends React.Component {
     return (
       <div>
         {this.state.error ? <h1>Try Again</h1> : null}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleLoginSubmit}>
           <div>
-            <label>email</label>
+            <h3>Sign In</h3>
+            <label>Email</label>
             <input
               type="text"
               name="email"
-              value={this.state.credentials.email}
-              onChange={this.handleChange}
+              value={this.state.logincredentials.email}
+              onChange={this.handleLoginChange}
             />
           </div>
           <div>
@@ -54,11 +86,33 @@ class Login extends React.Component {
             <input
               name="password"
               type="password"
-              value={this.state.credentials.password}
-              onChange={this.handleChange}
+              value={this.state.logincredentials.password}
+              onChange={this.handleLoginChange}
             />
           </div>
           <button type="submit">Login</button>
+        </form>
+        <form onSubmit={this.handleSignUpSubmit}>
+          <div>
+            <h3>Sign Up</h3>
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              value={this.state.signupcredentials.email}
+              onChange={this.handleSignUpChange}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              name="password"
+              type="password"
+              value={this.state.signupcredentials.password}
+              onChange={this.handleSignUpChange}
+            />
+          </div>
+          <button type="submit">Register</button>
         </form>
       </div>
     );

@@ -45,10 +45,9 @@ class NewEntryForm extends React.Component {
 
   render() {
     let formStyle = {
-      padding: 10,
+      padding: 20,
       borderRadius: 10
     };
-    let file = "";
     const prompts = [
       "Write about going back to school after summer vacation. ",
       "Write a thank you note to a friend who gave you onion andj garlic-flavored chewing gum.",
@@ -76,7 +75,7 @@ class NewEntryForm extends React.Component {
       "What would you do if you could travel into the future?",
       "What would you do if you could travel into the past?"
     ];
-    let promptIndex = Math.floor(Math.random() * 25) + 1;
+    const promptIndex = Math.floor(Math.random() * 25) + 1;
 
     return (
       <div>
@@ -111,7 +110,6 @@ class NewEntryForm extends React.Component {
                         name="content"
                         onChange={this.handleChange}
                         maxLength="500"
-                        data-length="500"
                       />
                       <div className="input-field inline">
                         <EmojiField
@@ -156,51 +154,5 @@ class NewEntryForm extends React.Component {
     );
   }
 }
-
-//                       ___________________________
-//                      | ____                      |
-//                      ||  _ \ ___  __ _  ___ ___  |
-//                      || |_) / _ \/ _` |/ __/ _ \ |
-//                      ||  __/  __/ (_| | (_|  __/ |
-//                      ||_|   \___|\__,_|\___\___| |
-//                      |___________________________|
-//                                    |
-//                                    |
-//            .,:;:;,.                |
-//           :;.' `.:::               |
-//           %%%%%%%%%&'              |
-//           : o   o  :`           .\ p
-//           :   c    :          .'  \ )
-//           :`. -  .':        .'     .`
-//           ;::`--':::      .'     .'|
-//         _.:;:oooo::;._  .'     .'
-//       ."  :::.__.;::  "'     .'
-//       '   :::    :::       .'
-//      .                   .'
-//      '    .  .-|-.     .'
-//     .     ' .  |  .    :
-//     '    ,  `./|\.'    :
-//    .    .     `"'      :
-//    '    :              :
-//   .    ':              :
-//  .____' :              :
-//  '  '   :______________:
-// ''''     :`-.'  -,.._`;
-//          :'.-.-`_.-.,':
-//          :-'.'_`'.-,.,:
-//          :.-`_.-_.-` -:
-//          : -'.'`,`.,`-;
-//          :'.` -'_'. _.:
-//          ;-`.,-`-','._:
-//          ;`- `-`- '. _:
-//          :-.`,_.`'.-.`:
-//          :,-'.`-.',-_':
-//          :._,`-''.,-.-;
-//          ;.-`--`.-,.,`:
-//          :,.-`._'.`-._:
-//          :`.'.-_.''.`.:
-//          `-.'`-'.---.-`
-//            `..'  `..' mh
-//
 
 export default NewEntryForm;

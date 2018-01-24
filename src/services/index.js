@@ -9,6 +9,14 @@ const getHeaders = () => {
   };
 };
 
+const createUser = (email, password) => {
+  return fetch(`${API_ROOT}/users`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ email, password })
+  }).then(res => res.json());
+};
+
 const logIn = (email, password) => {
   return fetch(`${API_ROOT}/auth`, {
     method: "POST",
@@ -71,6 +79,7 @@ export const services = {
   },
   auth: {
     logIn,
-    getCurrentUser
+    getCurrentUser,
+    createUser
   }
 };

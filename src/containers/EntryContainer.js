@@ -28,7 +28,6 @@ class EntryContainer extends React.Component {
     return (
       <div>
         <button onClick={this.props.history.goBack}>Back To Entries</button>
-        <h1>This Is the Entry Container, single entry goes here</h1>
         <Entry entry={this.state.entry} />
       </div>
     );
