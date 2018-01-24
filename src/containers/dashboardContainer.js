@@ -10,7 +10,6 @@ class DashboardContainer extends React.Component {
     let lastEntryLocation = "";
     let lastEntryWeather = "";
     let lastEntryTemp = "";
-    let firstEntryDate = "";
     let joinDate = "";
     let goPath = "";
     if (lastEntry) {

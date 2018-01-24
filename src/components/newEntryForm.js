@@ -1,7 +1,7 @@
 import React from "react";
 import { services } from "../services";
 import EmojiField from "emoji-picker-textfield";
-import { prompts } from "./prompts";
+// import { prompts } from "./prompts";
 
 class NewEntryForm extends React.Component {
   state = {
@@ -34,6 +34,10 @@ class NewEntryForm extends React.Component {
     this.setState({ mood: unicodeValue });
   };
 
+  handleFileSelect = event => {
+    file = event.target.value;
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     this.props.handleCreateEntry(this.state);
@@ -44,9 +48,36 @@ class NewEntryForm extends React.Component {
       padding: 10,
       borderRadius: 10
     };
-    debugger;
+    let file = "";
+    const prompts = [
+      "Write about going back to school after summer vacation. ",
+      "Write a thank you note to a friend who gave you onion andj garlic-flavored chewing gum.",
+      "Draw an imaginary constellation. Write a story such as ancient people might have told about it.",
+      "Describe a real made-up dream or nightmare.",
+      "Write about your favorite childhood toy.",
+      "Write out the best or the worst day of your life.",
+      "Finish this thought: if I could change one thing about myself (if you can't think of anything, you might want to consider telling how you got to be perfect!)",
+      "If and when I raise children, I'll never",
+      "I have never been more frightened than when...",
+      "Persuade a friend to give up drugs.",
+      "Five years from now, I will be...",
+      "Write about a day you'd like to forget.",
+      "Invent and describe a new food.",
+      "Describe an event that changed your life forever, or make up and describe an event that would change your life forever.",
+      "Describe someone who is a hero to you and explain why.",
+      "Write about a time in your life when you struggled with a choice and made the right one.",
+      "Imagine yourself in a different century and describe an average day in your life.",
+      "Which character from a book would you most like to meet and why?",
+      "Three goals I have set for myself are...",
+      "What would you do if 300 mice had just gotten out of their cages in a pet shop where you worked?",
+      "What would you do if you were locked inside your favorite department store overnight?",
+      "What would you do if you woke up one morning to find yourself invisible?",
+      "What would you do if you were able to communicate with animals?",
+      "What would you do if you could travel into the future?",
+      "What would you do if you could travel into the past?"
+    ];
     let promptIndex = Math.floor(Math.random() * 25) + 1;
-    const ReactS3Uploader = require("react-s3-uploader");
+
     return (
       <div>
         <h1>NewEntryForm</h1>
@@ -55,7 +86,7 @@ class NewEntryForm extends React.Component {
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <span className="card-title">Today's Prompt</span>
-                // <span>{prompts[promptIndex]}</span>
+                <span>{prompts[promptIndex]}</span>
               </div>
             </div>
           </div>
@@ -79,6 +110,8 @@ class NewEntryForm extends React.Component {
                         className="materialize-textarea"
                         name="content"
                         onChange={this.handleChange}
+                        maxLength="500"
+                        data-length="500"
                       />
                       <div className="input-field inline">
                         <EmojiField
@@ -87,19 +120,23 @@ class NewEntryForm extends React.Component {
                           autoClose={true}
                           fieldType="textfield"
                           data-emoji-input="unicode"
-                          className="black-text"
                           ref={_field => (this._field = _field)}
                         />
-                        <label forhtml="emojiInput">#Mood</label>
+                        <label forhtml="emojiInput" className="black-text">
+                          #Mood
+                        </label>
                       </div>
                       <div className="file-field input-field">
                         <div className="btn">
                           <span>File</span>
                           <input type="file" />
-                          <ReactS3Uploader />
                         </div>
                         <div className="file-path-wrapper">
-                          <input className="file-path validate" type="text" />
+                          <input
+                            className="file-path validate"
+                            type="text"
+                            onChange={this.handleFileSelect}
+                          />
                         </div>
                       </div>
                       <a
