@@ -3,14 +3,15 @@ import { services } from "../services";
 import EmojiField from "emoji-picker-textfield";
 // import { prompts } from "./prompts";
 
-class NewEntryForm extends React.Component {
+class newEntryForm extends React.Component {
   state = {
     content: "",
     timestamp: "",
     location: [],
     weather: "",
     img_src: "",
-    mood: ""
+    mood: "",
+    file: ""
   };
 
   componentDidMount = () => {
@@ -34,12 +35,13 @@ class NewEntryForm extends React.Component {
     this.setState({ mood: unicodeValue });
   };
   //
-  // handleFileSelect = event => {
-  //   file = event.target.value;
-  // };
+  handleFileSelect = event => {
+    this.setState({ file: event.target.files[0] });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
+    debugger;
     this.props.handleCreateEntry(this.state);
   };
 
@@ -48,7 +50,7 @@ class NewEntryForm extends React.Component {
       padding: 10,
       borderRadius: 10
     };
-    let file = "";
+
     const prompts = [
       "Write about going back to school after summer vacation. ",
       "Write a thank you note to a friend who gave you onion andj garlic-flavored chewing gum.",
@@ -77,15 +79,14 @@ class NewEntryForm extends React.Component {
       "What would you do if you could travel into the past?"
     ];
     let promptIndex = Math.floor(Math.random() * 25) + 1;
-
     return (
       <div>
-        <h1>NewEntryForm</h1>
+        <h1>newEntryForm</h1>
         <div className="row">
           <div className="col s5">
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
-                <span className="card-title">Today's Prompt</span>
+                <span className="card-title">Todays Prompt</span>
                 <span>{prompts[promptIndex]}</span>
               </div>
             </div>
@@ -157,50 +158,4 @@ class NewEntryForm extends React.Component {
   }
 }
 
-//                       ___________________________
-//                      | ____                      |
-//                      ||  _ \ ___  __ _  ___ ___  |
-//                      || |_) / _ \/ _` |/ __/ _ \ |
-//                      ||  __/  __/ (_| | (_|  __/ |
-//                      ||_|   \___|\__,_|\___\___| |
-//                      |___________________________|
-//                                    |
-//                                    |
-//            .,:;:;,.                |
-//           :;.' `.:::               |
-//           %%%%%%%%%&'              |
-//           : o   o  :`           .\ p
-//           :   c    :          .'  \ )
-//           :`. -  .':        .'     .`
-//           ;::`--':::      .'     .'|
-//         _.:;:oooo::;._  .'     .'
-//       ."  :::.__.;::  "'     .'
-//       '   :::    :::       .'
-//      .                   .'
-//      '    .  .-|-.     .'
-//     .     ' .  |  .    :
-//     '    ,  `./|\.'    :
-//    .    .     `"'      :
-//    '    :              :
-//   .    ':              :
-//  .____' :              :
-//  '  '   :______________:
-// ''''     :`-.'  -,.._`;
-//          :'.-.-`_.-.,':
-//          :-'.'_`'.-,.,:
-//          :.-`_.-_.-` -:
-//          : -'.'`,`.,`-;
-//          :'.` -'_'. _.:
-//          ;-`.,-`-','._:
-//          ;`- `-`- '. _:
-//          :-.`,_.`'.-.`:
-//          :,-'.`-.',-_':
-//          :._,`-''.,-.-;
-//          ;.-`--`.-,.,`:
-//          :,.-`._'.`-._:
-//          :`.'.-_.''.`.:
-//          `-.'`-'.---.-`
-//            `..'  `..' mh
-//
-
-export default NewEntryForm;
+export default newEntryForm;

@@ -8,7 +8,6 @@ class NewEntryContainer extends React.Component {
         <NewEntryForm
           currentUser={this.props.currentUser}
           history={this.props.history}
-          refreshEntries={this.props.refreshEntries}
           handleCreateEntry={this.props.handleCreateEntry}
         />
       </div>

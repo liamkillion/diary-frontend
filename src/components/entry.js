@@ -13,7 +13,7 @@ class Entry extends React.Component {
       <div className="container">
         <div className="card teal darken-1 z-depth-4">
           <p>You wrote: {this.props.entry.content}</p>
-          <p>Posted On: {this.props.entry.created_on_date}</p>
+          <p>Posted On: {this.props.entry.created_at}</p>
           <p>Location: {location}</p>
           <p>
             Mood:

@@ -8,6 +8,7 @@ import NewEntryContainer from "./containers/NewEntryContainer";
 import EntriesContainer from "./containers/EntriesContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 import EntryContainer from "./containers/EntryContainer";
+import ReactS3 from "react-s3";
 
 class App extends React.Component {
   state = { auth: { currentUser: { entries: [] } } };
@@ -39,18 +40,6 @@ class App extends React.Component {
       .createNewEntry(newEntry)
       .then(entries => this.setState({ auth: { currentUser: { entries } } }));
     this.props.history.push("/entries");
-  };
-
-  refreshEntries = item => {
-    const newItem = item;
-    this.setState(previousState => ({
-      auth: {
-        currentUser: {
-          ...previousState.auth.currentUser,
-          entries: [newItem, ...previousState.auth.currentUser.entries]
-        }
-      }
-    }));
   };
 
   render() {
