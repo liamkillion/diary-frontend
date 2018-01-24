@@ -8,7 +8,7 @@ class EntryTile extends React.Component {
     const goPath = `/entries/${this.props.entry.id}`;
     return (
       <Link to={goPath}>
-        <div className="card teal darken-1">
+        <div className="card teal darken-1 z-depth-4">
           <div className="card-content white-text">
             <p>Your post: {this.props.entry.content}</p>
             <p>Created at: {showDate}</p>

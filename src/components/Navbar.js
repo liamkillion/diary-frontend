@@ -12,42 +12,45 @@ class Navbar extends React.Component {
               <li>{`Welcome ${this.props.currentUser.name}`}</li>
               <li>
                 <Link to={"/entries"}>
-                  <button>All Entries</button>
+                  <div className="waves-effect waves-light btn">
+                    All Entries
+                  </div>
                 </Link>
               </li>
               <li>
                 <Link to={"/entries/new"}>
-                  <button>New Entry</button>
+                  <div className="waves-effect waves-light btn">New Entry</div>
                 </Link>
               </li>
               <li>
                 <Link to={"/dashboard"}>
-                  <button>Dashboard</button>
+                  <div className="waves-effect waves-light btn">Dashboard</div>
                 </Link>
               </li>
               <li>
-                {" "}
-                <button
+                <div
+                  className="waves-effect waves-light btn"
                   onClick={() => {
                     this.props.history.push("/login");
                     this.props.handleLogout;
                   }}
                 >
                   Log Out
-                </button>
+                </div>
               </li>
             </ul>
           ) : (
             <ul className="right hide-on-med-and-down">
               <li>Welcome</li>
               <li>
-                <button
+                <div
+                  className="waves-effect waves-light btn"
                   onClick={() => {
                     this.props.history.push("/login");
                   }}
                 >
                   Log In
-                </button>
+                </div>
               </li>
             </ul>
           )}

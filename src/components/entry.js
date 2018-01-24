@@ -10,8 +10,8 @@ class Entry extends React.Component {
     const weather = this.props.entry.weather.summary;
     const temp = this.props.entry.weather.temperature;
     return (
-      <div>
-        <div className="card teal darken-1">
+      <div className="container">
+        <div className="card teal darken-1 z-depth-4">
           <p>You wrote: {this.props.entry.content}</p>
           <p>Posted On: {this.props.entry.created_on_date}</p>
           <p>Location: {location}</p>

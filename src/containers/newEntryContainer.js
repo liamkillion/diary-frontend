@@ -1,24 +1,16 @@
 import React from "react";
 import NewEntryForm from "../components/NewEntryForm";
-import EntryInfo from "../components/EntryInfo";
 
 class NewEntryContainer extends React.Component {
   render() {
     return (
       <div>
-        <div className="row">
-          <div className="col s4">
-            <EntryInfo />
-          </div>
-          <div className="col s8">
-            <NewEntryForm
-              currentUser={this.props.currentUser}
-              history={this.props.history}
-              refreshEntries={this.props.refreshEntries}
-              handleCreateEntry={this.props.handleCreateEntry}
-            />
-          </div>
-        </div>
+        <NewEntryForm
+          currentUser={this.props.currentUser}
+          history={this.props.history}
+          refreshEntries={this.props.refreshEntries}
+          handleCreateEntry={this.props.handleCreateEntry}
+        />
       </div>
     );
   }

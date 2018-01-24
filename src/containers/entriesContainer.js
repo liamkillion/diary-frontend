@@ -9,10 +9,8 @@ class EntriesContainer extends React.Component {
       );
     });
     return (
-      <div>
-        <div className="row">
-          <div className="col s12 m6">{entries}</div>
-        </div>
+      <div className="container">
+        <div className="row">{entries}</div>
       </div>
     );
   }
