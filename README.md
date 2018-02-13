@@ -1,4 +1,4 @@
-Hello! Welcome to the repo (half) for my Flatiron School final project, Daily Diary.
+Hello! Welcome to (half of) the repo for my Flatiron School final project, Daily Diary.
 
 This project was built over 3 weeks with React & Material UI on the Front End (this repo) and Rails API on the backend. It includes Authorization using JWT tokens.
 
